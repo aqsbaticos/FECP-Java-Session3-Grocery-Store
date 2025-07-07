@@ -26,9 +26,30 @@ public class Grocery {
 					viewInventory(products);
 					break;
 				case "2":
+					System.out.print("Enter product name: ");
+						String tempName = in.next().toLowerCase();
+					System.out.print("Enter quantity: ");
+						int tempQty = Integer.parseInt(in.next());
+					products = addProduct(tempName, tempQty, products);
 					break;
 				case "3":
+					System.out.print("Enter product name: ");
+						tempName = in.next().toLowerCase();
+					String result = checkProduct(tempName, products);
+
+					in.nextLine();
+					clearScreen();
+					System.out.println("╔═════════════════════════════════════════════╗");
+					System.out.println("║                 \uD83D\uDCCB  SEARCH  \uD83D\uDCCB                ║");
+					if (result=="") System.out.println("    This product is not in your inventory.");
+					else System.out.println(result);
+					System.out.println("╠═════════════════════════════════════════════╣");
+					System.out.println("╚═════════════════════════════════════════════╝");
+					System.out.print("Press ENTER to continue...");
+					String enter = "";
+						in.nextLine();
 					break;
+
 				case "4":
 					break;
 				case "5":
@@ -45,6 +66,7 @@ public class Grocery {
 
 	//	STORE METHODS
 	public static HashMap<String, Integer> addProduct(String product, int quantity, HashMap<String, Integer> products) {
+		products.put(product, quantity);
 		return products;
 	}
 
@@ -57,10 +79,12 @@ public class Grocery {
 			System.out.println("╠═══════════════════════════════════════════════════════╣");
 			System.out.println("║   No products found in your inventory.                ║");
 		} else {
-			System.out.println("╠═════════════════════════════════════════╦═════════════╣");
-			System.out.println("║   Product Name                          ║   Stock     ║");
+			System.out.println("╠═══════════════════════════════════════════════════════╣");
+			System.out.println();
 			products.forEach((name, qty) -> {
-				System.out.println("║   " + name + "\t" + qty);
+				System.out.println("    Product: " + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase());
+				System.out.println("    :: " + qty + " piece(s)");
+				System.out.println();
 			});
 		}
 		System.out.println("╠═══════════════════════════════════════════════════════╣");
@@ -70,7 +94,8 @@ public class Grocery {
 	}
 
 	public static String checkProduct(String key, HashMap<String, Integer> products) {
-		return "";
+		if (products.containsKey(key)) return ("║   " + key.toUpperCase() + " IN STOCK: " + products.get(key));
+		else return "";
 	}
 
 	public static HashMap<String, Integer> updateProduct(String key, int newQuantity, HashMap<String, Integer> products) {
