@@ -17,7 +17,7 @@ public class Grocery {
 
 		String menuChoice = ""; boolean isRunning = true;
 		while(isRunning) {
-			clearScreen();
+//			clearScreen();
 			printStore();
 			System.out.print("\uD83C\uDFEA :: ");
 			menuChoice = in.next();
@@ -38,7 +38,7 @@ public class Grocery {
 					String result = checkProduct(tempName, products);
 
 					in.nextLine();
-					clearScreen();
+//					clearScreen();
 					System.out.println("╔═════════════════════════════════════════════╗");
 					System.out.println("║                 \uD83D\uDCCB  SEARCH  \uD83D\uDCCB                ║");
 					if (result=="") System.out.println("    This product is not in your inventory.");
@@ -80,7 +80,7 @@ public class Grocery {
 
 	public static void viewInventory(HashMap<String, Integer> products) {
 		in.nextLine();
-		clearScreen();
+//		clearScreen();
 		System.out.println("╔═══════════════════════════════════════════════════════╗");
 		System.out.println("║                     \uD83D\uDCCB  Inventory  \uD83D\uDCCB                   ║");
 		if (products.isEmpty()) {
