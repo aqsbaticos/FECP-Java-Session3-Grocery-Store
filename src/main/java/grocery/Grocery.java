@@ -51,8 +51,16 @@ public class Grocery {
 					break;
 
 				case "4":
+					System.out.print("Enter product name to restock: ");
+						String productToUpdate = in.next().toLowerCase();
+					System.out.print("Enter quantity: ");
+						int newStock = Integer.parseInt(in.next());
+					products = updateProduct(productToUpdate, newStock, products);
 					break;
 				case "5":
+					System.out.print("Enter product name to remove: ");
+						String productToRemove = in.next().toLowerCase();
+					products = removeProduct(productToRemove, products);
 					break;
 				case "0":
 					System.out.println("\uD83C\uDFEA :: Adios!");
@@ -99,10 +107,12 @@ public class Grocery {
 	}
 
 	public static HashMap<String, Integer> updateProduct(String key, int newQuantity, HashMap<String, Integer> products) {
+		products.put(key, newQuantity);
 		return products;
 	}
 
 	public static HashMap<String, Integer> removeProduct(String key, HashMap<String, Integer> products) {
+		products.remove(key);
 		return products;
 	}
 
