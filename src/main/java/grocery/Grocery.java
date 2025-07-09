@@ -61,7 +61,10 @@ public class Grocery {
 					System.out.print("Enter quantity: ");
 						try {
 							int newStock = Integer.parseInt(in.next());
-							if (newStock>=0) updateProduct(productToUpdate, newStock, products);
+							if (newStock>=0) {
+								if (products.containsKey(productToUpdate)) updateProduct(productToUpdate, newStock, products);
+								else System.out.println("[MISSING] Product to update not found.");
+							}
 							else System.out.println("[USER INPUT ERROR] Please enter a non-negative number.");
 						} catch (NumberFormatException e) {
 							System.out.println("[USER INPUT ERROR] Please enter a whole number.");
@@ -117,7 +120,7 @@ public class Grocery {
 	}
 
 	public static HashMap<String, Integer> updateProduct(String key, int newQuantity, HashMap<String, Integer> products) {
-		products.put(key, newQuantity);
+		if (products.containsKey(key)) products.put(key, newQuantity);
 		return products;
 	}
 
