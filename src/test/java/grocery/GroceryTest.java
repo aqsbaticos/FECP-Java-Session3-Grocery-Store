@@ -67,7 +67,7 @@ class GroceryTest {
 	}
 
 	@Nested
-	class TestCheckProduct {
+	class TestCheckUpdateProduct {
 
 		@BeforeEach
 		void populate() {
@@ -109,10 +109,55 @@ class GroceryTest {
 			assertEquals(expected, result);
 
 		}
-	}
 
-	@org.junit.jupiter.api.Test
-	void updateProduct() {
+		@Test
+		void updateProduct_existingProductPositiveQuantity() {
+
+			String productKey = "apple";
+			int newQuantity = 15;
+			int initialSize = products.size();
+
+			HashMap<String, Integer> updatedProducts = Grocery.updateProduct(productKey, newQuantity, products);
+
+			//	Assertions
+			assertNotNull(updatedProducts);
+			assertEquals(initialSize, updatedProducts.size());
+			assertTrue(updatedProducts.containsKey(productKey));
+			assertEquals(newQuantity, updatedProducts.get(productKey));
+			assertEquals(products, updatedProducts);
+
+		}
+
+		@Test
+		void updateProduct_existingProductZeroQuantity() {
+
+			String productKey = "banana";
+			int newQuantity = 0;
+			int initialSize = products.size();
+
+			HashMap<String, Integer> updatedProducts = Grocery.updateProduct(productKey, newQuantity, products); // Call Grocery.updateProduct
+
+			// Assertions
+			assertEquals(initialSize, updatedProducts.size());
+			assertEquals(newQuantity, updatedProducts.get(productKey));
+
+		}
+
+		@Test
+		void updateProduct_addNewProduct() {
+
+			String newProductKey = "grapes";
+			int newQuantity = 20;
+			int initialSize = products.size();
+
+			HashMap<String, Integer> updatedProducts = Grocery.updateProduct(newProductKey, newQuantity, products);
+
+			// Assertions
+			assertEquals(initialSize, updatedProducts.size(), "HashMap size should not increase by one.");
+			assertFalse(updatedProducts.containsKey(newProductKey), "HashMap should not contain the product updated.");
+
+		}
+
 	}
 
 	@org.junit.jupiter.api.Test
