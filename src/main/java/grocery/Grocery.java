@@ -31,9 +31,10 @@ public class Grocery {
 					System.out.print("Enter quantity: ");
 						try {
 							int tempQty = Integer.parseInt(in.next());
-							addProduct(tempName, tempQty, products);
+							if (tempQty>=0) addProduct(tempName, tempQty, products);
+							else System.out.println("[USER INPUT ERROR] Please enter a non-negative number.");
 						} catch (NumberFormatException e) {
-							System.out.println("[USER INPUT ERROR] Please enter a valid number.");
+							System.out.println("[USER INPUT ERROR] Please enter a whole number.");
 						}
 					break;
 				case "3":
@@ -94,7 +95,7 @@ public class Grocery {
 			System.out.println("╠═══════════════════════════════════════════════════════╣");
 			System.out.println();
 			products.forEach((name, qty) -> {
-				System.out.println("    Product: " + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase());
+				System.out.println("    " + name.substring(0,1).toUpperCase() + name.substring(1).toLowerCase());
 				System.out.println("    :: " + qty + " piece(s)");
 				System.out.println();
 			});
