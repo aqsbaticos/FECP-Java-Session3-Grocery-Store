@@ -59,8 +59,13 @@ public class Grocery {
 					System.out.print("Enter product name to restock: ");
 						String productToUpdate = in.next().toLowerCase();
 					System.out.print("Enter quantity: ");
-						int newStock = Integer.parseInt(in.next());
-					products = updateProduct(productToUpdate, newStock, products);
+						try {
+							int newStock = Integer.parseInt(in.next());
+							if (newStock>=0) updateProduct(productToUpdate, newStock, products);
+							else System.out.println("[USER INPUT ERROR] Please enter a non-negative number.");
+						} catch (NumberFormatException e) {
+							System.out.println("[USER INPUT ERROR] Please enter a whole number.");
+						}
 					break;
 				case "5":
 					System.out.print("Enter product name to remove: ");
