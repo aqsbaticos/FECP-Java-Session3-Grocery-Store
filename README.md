@@ -9,7 +9,4 @@ Developed by: Baticos, Andric Quinn S.
 Developed by: Baticos, Andric Quinn S.
 
 ### Screenshot of Proof
-
-[//]: # (![Screenshot Proof]&#40;/proof1.png?raw=true "proof"&#41;)
-
-[//]: # (![Screenshot Proof]&#40;/proof2.png?raw=true "proof"&#41;)
+![Screenshot Proof](/proof.png?raw=true "proof")
