@@ -3,6 +3,7 @@ import grocery.Grocery;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -19,7 +20,7 @@ class GroceryTest {
 	@Test
 	void addProduct_addNewProductValidQuantity() {
 
-		String newProduct = "Banana";
+		String newProduct = "banana";
 		int quantity = 30;
 
 		HashMap<String, Integer> updatedProducts = Grocery.addProduct(newProduct, quantity, products);
@@ -36,8 +37,8 @@ class GroceryTest {
 	@Test
 	void addProduct_updateExistingProductQuantity() {
 
-		products.put("Banana", 5);
-		String existingProduct = "Banana";
+		products.put("banana", 5);
+		String existingProduct = "banana";
 		int newQuantity = 12;
 
 		HashMap<String, Integer> updatedProducts = Grocery.addProduct(existingProduct, newQuantity, products);
@@ -53,7 +54,7 @@ class GroceryTest {
 	@Test
 	void addProduct_addZeroQuantity() {
 
-		String newProduct = "Milk";
+		String newProduct = "milk";
 		int zeroQuantity = 0;
 
 		HashMap<String, Integer> updatedProducts = Grocery.addProduct(newProduct, zeroQuantity, products);
@@ -65,12 +66,49 @@ class GroceryTest {
 
 	}
 
-	@org.junit.jupiter.api.Test
-	void viewInventory() {
-	}
+	@Nested
+	class TestCheckProduct {
 
-	@org.junit.jupiter.api.Test
-	void checkProduct() {
+		@BeforeEach
+		void populate() {
+			products.put("apple", 10);
+			products.put("banana", 5);
+			products.put("orange", 0);		//	0
+		}
+
+		@Test
+		void checkProduct_existingProductPositiveStock() {
+
+			String productKey = "apple";
+			String expected = "    APPLE IN STOCK: 10";
+
+			String result = Grocery.checkProduct(productKey, products);
+
+			assertEquals(expected, result);
+		}
+
+		@Test
+		void checkProduct_existingProductZeroStock() {
+
+			String productKey = "orange";
+			String expected = "    ORANGE IN STOCK: 0";
+
+			String result = Grocery.checkProduct(productKey, products);
+
+			assertEquals(expected, result);
+		}
+
+		@Test
+		void checkProduct_nonExistingProduct() {
+
+			String productKey = "grape";
+			String expected = "";
+
+			String result = Grocery.checkProduct(productKey, products);
+
+			assertEquals(expected, result);
+
+		}
 	}
 
 	@org.junit.jupiter.api.Test
