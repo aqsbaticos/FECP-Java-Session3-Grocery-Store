@@ -45,9 +45,9 @@ public class Grocery {
 					in.nextLine();
 //					clearScreen();
 					System.out.println("╔═════════════════════════════════════════════╗");
-					System.out.println("║                 \uD83D\uDCCB  SEARCH  \uD83D\uDCCB                ║");
+					System.out.println("║               \uD83D\uDCCB  SEARCH  \uD83D\uDCCB                ║");
 					if (result=="") System.out.println("    This product is not in your inventory.");
-					else System.out.println(result);
+					else System.out.println("\n" + result + "\n");
 					System.out.println("╠═════════════════════════════════════════════╣");
 					System.out.println("╚═════════════════════════════════════════════╝");
 					System.out.print("Press ENTER to continue...");
@@ -87,7 +87,7 @@ public class Grocery {
 		in.nextLine();
 //		clearScreen();
 		System.out.println("╔═══════════════════════════════════════════════════════╗");
-		System.out.println("║                     \uD83D\uDCCB  Inventory  \uD83D\uDCCB                   ║");
+		System.out.println("║                   \uD83D\uDCCB  Inventory  \uD83D\uDCCB                   ║");
 		if (products.isEmpty()) {
 			System.out.println("╠═══════════════════════════════════════════════════════╣");
 			System.out.println("║   No products found in your inventory.                ║");
@@ -107,7 +107,7 @@ public class Grocery {
 	}
 
 	public static String checkProduct(String key, HashMap<String, Integer> products) {
-		if (products.containsKey(key)) return ("║   " + key.toUpperCase() + " IN STOCK: " + products.get(key));
+		if (products.containsKey(key)) return ("    " + key.toUpperCase() + " IN STOCK: " + products.get(key));
 		else return "";
 	}
 
@@ -124,7 +124,7 @@ public class Grocery {
 	//	CLASS METHODS
 	public static void printStore() {
 		System.out.println("╔═══════════════════════════════════════════════════════╗");
-		System.out.println("║          \uD83C\uDFEA  GCash Sari-Sari Store Management  \uD83C\uDFEA       ║");
+		System.out.println("║        \uD83C\uDFEA  GCash Sari-Sari Store Management  \uD83C\uDFEA       ║");
 		System.out.println("╠═══════════════════════════════════════════════════════╣");
 		System.out.println("║                                                       ║");
 		System.out.println("║   [1] View Inventory                                  ║");
