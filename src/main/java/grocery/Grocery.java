@@ -4,7 +4,6 @@ package grocery;
 import java.util.HashMap;
 import java.util.Scanner;
 
-
 public class Grocery {
 
 	static Scanner in = new Scanner(System.in);
@@ -17,7 +16,6 @@ public class Grocery {
 
 		String menuChoice = ""; boolean isRunning = true;
 		while(isRunning) {
-//			clearScreen();
 			printStore();
 			System.out.print("\uD83C\uDFEA :: ");
 			menuChoice = in.next();
@@ -43,7 +41,6 @@ public class Grocery {
 					String result = checkProduct(tempName, products);
 
 					in.nextLine();
-//					clearScreen();
 					System.out.println("╔═════════════════════════════════════════════╗");
 					System.out.println("║               \uD83D\uDCCB  SEARCH  \uD83D\uDCCB                ║");
 					if (result=="") System.out.println("    This product is not in your inventory.");
