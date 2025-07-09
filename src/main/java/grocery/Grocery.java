@@ -29,8 +29,12 @@ public class Grocery {
 					System.out.print("Enter product name: ");
 						String tempName = in.next().toLowerCase();
 					System.out.print("Enter quantity: ");
-						int tempQty = Integer.parseInt(in.next());
-					products = addProduct(tempName, tempQty, products);
+						try {
+							int tempQty = Integer.parseInt(in.next());
+							addProduct(tempName, tempQty, products);
+						} catch (NumberFormatException e) {
+							System.out.println("[USER INPUT ERROR] Please enter a valid number.");
+						}
 					break;
 				case "3":
 					System.out.print("Enter product name: ");
