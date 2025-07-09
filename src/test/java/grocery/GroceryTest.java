@@ -67,7 +67,7 @@ class GroceryTest {
 	}
 
 	@Nested
-	class TestCheckUpdateProduct {
+	class TestCheckUpdateRemoveProduct {
 
 		@BeforeEach
 		void populate() {
@@ -158,9 +158,38 @@ class GroceryTest {
 
 		}
 
+		@Test
+		void removeProduct_existingProduct() {
+
+			String productKey = "apple";
+			int initialSize = products.size();
+
+			HashMap<String, Integer> updatedProducts = Grocery.removeProduct(productKey, products);
+
+			// Assertions
+			assertNotNull(updatedProducts);
+			assertEquals(initialSize - 1, updatedProducts.size());
+			assertFalse(updatedProducts.containsKey(productKey));
+			assertEquals(products, updatedProducts);
+
+		}
+
+		@Test
+		void removeProduct_nonExistingProduct() {
+
+			String productKey = "mango";
+			int initialSize = products.size();
+
+			HashMap<String, Integer> updatedProducts = Grocery.removeProduct(productKey, products);
+
+			// Assertions
+			assertNotNull(updatedProducts);
+			assertEquals(initialSize, updatedProducts.size());
+			assertFalse(updatedProducts.containsKey(productKey));
+			assertEquals(products, updatedProducts);
+
+		}
+
 	}
 
-	@org.junit.jupiter.api.Test
-	void removeProduct() {
-	}
 }
